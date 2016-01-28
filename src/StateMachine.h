@@ -31,6 +31,7 @@ class StateMachine;
 typedef void State;
 typedef State (StateMachine::*PState)(void);
 
+
 class StateMachine {
     public:
         StateMachine(PState curState, PState prevState) :
