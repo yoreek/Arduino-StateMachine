@@ -85,6 +85,7 @@ Included on example folder, available on Arduino IDE.
 
 ## Version History ##
 
+ * 1.0.1 (2016-07-17): Added PUSH/POP state methods.
  * 1.0.0 (2016-01-28): Initial version.
 
 

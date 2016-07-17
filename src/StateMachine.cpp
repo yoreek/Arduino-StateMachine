@@ -16,6 +16,10 @@
  *
  */
 #include "StateMachine.h"
+#ifndef WITH_STATE_MACHINE_DEBUG
+#  undef WITH_DEBUG
+#endif
+#include <DebugUtil.h>
 
 void StateMachine::setState(PState state) {
     _prevState    = _curState;
@@ -23,13 +27,40 @@ void StateMachine::setState(PState state) {
     _stateUpdated = millis();
 }
 
+void StateMachine::pushState(PState state) {
+    if (_stackPos < SM_STACK_DEPTH) {
+        _stack[_stackPos++] = state;
+    }
+    else {
+        // Stack overflow
+        DEBUG("stack overflow");
+        while (1)
+            ;
+    }
+}
+
+PState StateMachine::popState() {
+    if (_stackPos > 0) {
+        return _stack[--_stackPos];
+    }
+    else {
+        return NULL;
+    }
+}
+
 void StateMachine::loop() {
-    if (_finished) {
+    if (_paused) {
         idle();
     }
     else {
         PState oldState = _curState;
         (this->*_curState)();
         _isStateUpdated = (oldState != _curState);
+    }
+}
+
+State StateMachine::DELAY(void) {
+    if (isTimeout(_delay)) {
+        SM_RETURN();
     }
 }
