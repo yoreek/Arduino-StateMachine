@@ -1,7 +1,7 @@
 # Arduino library for implementating simple state machine [![Build Status](https://travis-ci.org/yoreek/Arduino-StateMachine.svg?branch=master)](https://travis-ci.org/yoreek/Arduino-StateMachine)
 
-* Version: 1.0.1
-* Release Date: 2016-07-17
+* Version: 1.0.2
+* Release Date: 2020-09-03
 
 ## How do I get set up? ##
 
