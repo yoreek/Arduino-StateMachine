@@ -80,7 +80,7 @@ class StateMachine {
             _stackPos(0) {
         };
         StateMachine(PState curState) : StateMachine(curState, NULL) {};
-        void loop();
+        virtual void loop();
         virtual void idle() {};
         void setState(PState state);
         inline PState getState() { return _curState; };
